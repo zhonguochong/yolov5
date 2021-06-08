@@ -791,7 +791,7 @@ def replicate(img, labels):
 
     return img, labels
 
-
+# 自适应图片缩放 只在reference的时候采用了自适应添加最少的黑边
 def letterbox(img, new_shape=(640, 640), color=(114, 114, 114), auto=True, scaleFill=False, scaleup=True):
     # Resize image to a 32-pixel-multiple rectangle https://github.com/ultralytics/yolov3/issues/232
     shape = img.shape[:2]  # current shape [height, width]

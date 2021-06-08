@@ -209,8 +209,8 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             except:
                 pass
 
-        n = max(round(n * gd), 1) if n > 1 else n  # depth gain
-        if m in [Conv, Bottleneck, SPP, DWConv, MixConv2d, Focus, CrossConv, BottleneckCSP, C3]:
+        n = max(round(n * gd), 1) if n > 1 else n  # depth gain 控制网络深度csp1/csp2
+        if m in [Conv, Bottleneck, SPP, DWConv, MixConv2d, Focus, CrossConv, BottleneckCSP, C3]:  # 读取模型配置文件
             c1, c2 = ch[f], args[0]
 
             # Normal
@@ -220,7 +220,7 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             #     c2 = int(ch[1] * ex ** e)
             # if m != Focus:
 
-            c2 = make_divisible(c2 * gw, 8) if c2 != no else c2
+            c2 = make_divisible(c2 * gw, 8) if c2 != no else c2  # 控制网络宽度，厚度（与卷积核数量有关）
 
             # Experimental
             # if i > 0 and args[0] != no:  # channel expansion factor

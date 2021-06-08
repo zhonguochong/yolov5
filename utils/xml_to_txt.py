@@ -24,7 +24,7 @@ def single_xml_to_txt(xml_file, flags):
     # txt_file = '/home/zgc/zhonguochong/jp/labels/' + flags +'0121/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
     # txt_file = '/home/zgc/zhonguochong/jp/labels/' + flags +'0311/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
     
-    txt_file = '/home/zgc/test/zhonguochong/jp/labels/' + flags +'0414/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
+    txt_file = '/home/zgc/test/zhonguochong/jp/labels/' + flags +'0512/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
     with open(txt_file, 'w') as txt_file:
         for member in root.findall('object'):
             # filename = root.find('filename').text
@@ -50,5 +50,5 @@ def dir_xml_to_txt(path, flags):
     for xml_file in glob.glob(path + '*.xml'):
         single_xml_to_txt(xml_file, flags)
 
-dir_xml_to_txt(annotations_path + 'train0121/', 'train')
-# dir_xml_to_txt(annotations_path + 'val0121/', 'val')
+dir_xml_to_txt(annotations_path + 'train0512/', 'train')
+dir_xml_to_txt(annotations_path + 'val0512/', 'val')
