@@ -1,17 +1,21 @@
 '''
 @Author: your name
 @Date: 2020-06-02 14:02:59
-LastEditTime: 2021-03-12 18:00:52
-LastEditors: Guochong Zhong
+LastEditTime: 2021-06-08 16:57:07
+LastEditors: Please set LastEditors
 @Description: In User Settings Edit
 @FilePath: /object_detection/utils/xml_to_txt.py
 '''
 import glob
 import xml.etree.ElementTree as ET
 
-annotations_path = '/home/zgc/test/zhonguochong/jp/annotations/' 
+proj_name = 'hjd'
+annotations_path = '/home/zgc/test/zhonguochong/皓吉达马达线圈缺陷检测项目/' + proj_name + '/annotations/' 
 
-class_name_path = '/home/zgc/test/zhonguochong/jp/jp.names'
+class_name_path = '/home/zgc/test/zhonguochong/皓吉达马达线圈缺陷检测项目/' + proj_name +'/' + proj_name + '.names'
+time_name = '0608/'
+
+
 with open(class_name_path) as f:
     class_names = f.readlines()
     class_names = [item.strip('\n') for item in class_names]
@@ -24,7 +28,7 @@ def single_xml_to_txt(xml_file, flags):
     # txt_file = '/home/zgc/zhonguochong/jp/labels/' + flags +'0121/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
     # txt_file = '/home/zgc/zhonguochong/jp/labels/' + flags +'0311/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
     
-    txt_file = '/home/zgc/test/zhonguochong/jp/labels/' + flags +'0512/'+ xml_file.split('/')[-1].split('.')[0]+'.txt'
+    txt_file = '/home/zgc/test/zhonguochong/皓吉达马达线圈缺陷检测项目/' + proj_name + '/labels/' + flags +time_name+ xml_file.split('/')[-1].split('.')[0]+'.txt'
     with open(txt_file, 'w') as txt_file:
         for member in root.findall('object'):
             # filename = root.find('filename').text
@@ -50,5 +54,5 @@ def dir_xml_to_txt(path, flags):
     for xml_file in glob.glob(path + '*.xml'):
         single_xml_to_txt(xml_file, flags)
 
-dir_xml_to_txt(annotations_path + 'train0512/', 'train')
-dir_xml_to_txt(annotations_path + 'val0512/', 'val')
+dir_xml_to_txt(annotations_path + 'train' + time_name, 'train')
+dir_xml_to_txt(annotations_path + 'val' + time_name, 'val')
